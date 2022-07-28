@@ -2,8 +2,13 @@ from ntpath import join
 import pandas as pd
 from csv import excel
 
-pathT = r'C:\Users\hchmiele\OneDrive - Linklaters\Desktop\ImportExport\pythonTEST.xlsx'
-pathR = r'C:\Users\hchmiele\OneDrive - Linklaters\Desktop\ImportExport\pythonRESULT.xlsx'
+import tkinter as tk
+from tkinter import filedialog
+
+#wybierz scieżkę pliku 
+root = tk.Tk()
+root.withdraw()
+pathT = filedialog.askopenfilename()
 ws = "testowa"
 
 #utwórz i zapisz w Excelu
@@ -36,3 +41,6 @@ print(finTable)
 
 #zapisz w Excelu    
 finTable.to_excel(pathT, sheet_name= "testowa",index = False, startrow=0, startcol=0)
+
+#msg box 
+tk.messagebox.showinfo(title="Done!", message="Procedure completed succesfully.")
