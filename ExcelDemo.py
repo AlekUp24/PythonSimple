@@ -20,19 +20,19 @@ dr = pd.read_excel(pathT)
 new = pd.DataFrame({'Score': [int(x) for x in dr['Population']]})
 
 #połącz dwa Frame'y
-capper = dr.join(new)
-print(capper)
+finTable = dr.join(new)
+print(finTable)
 
 i=0
 #sprawdź i dopisz wyniki
-for x in capper['Score']:
+for x in finTable['Score']:
     if x > 100000:
-        capper['Score'][i]="Positive"
+        finTable['Score'][i]="Positive"
     else:
-        capper['Score'][i]="Negative"
+        finTable['Score'][i]="Negative"
     i+=1
     
-print(capper)
+print(finTable)
 
 #zapisz w Excelu    
-capper.to_excel(pathT, sheet_name= "testowa",index = False, startrow=0, startcol=0)
+finTable.to_excel(pathT, sheet_name= "testowa",index = False, startrow=0, startcol=0)
