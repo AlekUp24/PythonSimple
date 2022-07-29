@@ -1,6 +1,6 @@
-from ntpath import join
 import pandas as pd
 import tkinter as tk
+from ntpath import join
 from tkinter import filedialog
 
 #wybierz scieżkę pliku 
