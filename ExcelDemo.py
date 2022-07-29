@@ -1,13 +1,9 @@
 from ntpath import join
 import pandas as pd
-from csv import excel
-
 import tkinter as tk
 from tkinter import filedialog
 
 #wybierz scieżkę pliku 
-root = tk.Tk()
-root.withdraw()
 pathT = filedialog.askopenfilename()
 ws = "testowa"
 
@@ -24,9 +20,8 @@ dr = pd.read_excel(pathT)
 #utwórz DF wynik i dodaj tam int z populacji
 new = pd.DataFrame({'Score': [int(x) for x in dr['Population']]})
 
-#połącz dwa Frame'y
+#połącz dwa Data Frame'y
 finTable = dr.join(new)
-print(finTable)
 
 i=0
 #sprawdź i dopisz wyniki
