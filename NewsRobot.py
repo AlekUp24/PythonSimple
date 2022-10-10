@@ -7,7 +7,7 @@ import tkinter
 # set vars
 sciezkaSelen = "C:/SeleniumDrivers/chromedriver.exe"
 newsURL = "https://polsatnews.pl" 
-teraz = datetime.datetime.now()
+teraz = str(datetime.datetime.now())
 
 # set driver
 driver = webdriver.Chrome(sciezkaSelen)
@@ -42,7 +42,7 @@ headerList = newsList.split(chr(10))
 for news in headerList:
     if news[0:6] != "Zobacz":
         urlAdress = driver.find_element_by_link_text(news).get_attribute("href")
-        finalTable = finalTable.append({'Date':str(teraz), 'Source':'Polsat News','News Header':news, 'URL': urlAdress},ignore_index=True)
+        finalTable = finalTable.append({'Date': teraz[0:19], 'Source':'Polsat News','News Header':news, 'URL': urlAdress},ignore_index=True)
 
 print(finalTable)
 # save to .TXT file
@@ -57,6 +57,7 @@ except:
     tkinter.messagebox.showinfo(title="Error!",message="Can't save to text!")
     exit()
 
+driver.close()
 tkinter.messagebox.showinfo(title="Done!",message="News saved successfuly here: " + txtPath)
 
 '''
