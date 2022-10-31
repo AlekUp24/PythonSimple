@@ -18,10 +18,12 @@ df.to_excel(pathT, sheet_name=ws, index = False)
 dr = pd.read_excel(pathT)
 
 #utwórz DF wynik i dodaj tam int z populacji
-new = pd.DataFrame({'Score': [int(x) for x in dr['Population']]})
+new = pd.DataFrame({'Short': [x.upper()[0:3] for x in dr['States']]})
+new2 = pd.DataFrame({'Score': [int(x) for x in dr['Population']]})
 
 #połącz dwa Data Frame'y
-finTable = dr.join(new)
+finTable = new.join(df)
+finTable = finTable.join(new2)
 
 i=0
 #sprawdź i dopisz wyniki
@@ -35,7 +37,7 @@ for x in finTable['Score']:
 print(finTable)
 
 #zapisz w Excelu    
-finTable.to_excel(pathT, sheet_name= "testowa",index = False, startrow=0, startcol=0)
+finTable.to_excel(pathT, sheet_name=ws,index = False, startrow=0, startcol=0)
 
 #msg box 
 tk.messagebox.showinfo(title="Done!", message="Procedure completed succesfully.")
