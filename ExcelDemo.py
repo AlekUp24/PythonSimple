@@ -3,30 +3,30 @@ import tkinter as tk
 from ntpath import join
 from tkinter import filedialog
 
-#wybierz scieżkę pliku 
+#select folder path 
 pathT = filedialog.askopenfilename()
 ws = "testowa"
 
-#utwórz i zapisz w Excelu
+#create table and save in Excel
 df = pd.DataFrame({'States':['California', 'Florida', 'Montana', 'Colorodo', 'Washington', 'Virginia'],
                    'Capitals':['Sacramento', 'Tallahassee', 'Helena', 'Denver', 'Olympia', 'Richmond'],
                    'Population':['508529', '193551', '32315', '619968', '52555', '227032']})
 
 df.to_excel(pathT, sheet_name=ws, index = False)
 
-#odczytaj z Excela
+#read from Excel
 dr = pd.read_excel(pathT)
 
-#utwórz DF wynik i dodaj tam int z populacji
+#create new DF and add population score
 new = pd.DataFrame({'Short': [x.upper()[0:3] for x in dr['States']]})
 new2 = pd.DataFrame({'Score': [int(x) for x in dr['Population']]})
 
-#połącz dwa Data Frame'y
+#combine two Data Frames
 finTable = new.join(df)
 finTable = finTable.join(new2)
 
 i=0
-#sprawdź i dopisz wyniki
+#write results
 for x in finTable['Score']:
     if x > 100000:
         finTable['Score'][i]="Positive"
@@ -36,7 +36,7 @@ for x in finTable['Score']:
     
 print(finTable)
 
-#zapisz w Excelu    
+#save in Excel 
 finTable.to_excel(pathT, sheet_name=ws,index = False, startrow=0, startcol=0)
 
 #msg box 
