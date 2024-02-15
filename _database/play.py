@@ -50,5 +50,5 @@ for index,row in user_choices.iterrows():
 
 for each in objects:
     if each.can_afford(budget):
-        print(each)
+        print(each)      #Kia Sportage from 2023 has SUV body type and comes in Black, Silver, Red. Fuel option is Gasoline. Price: $ 25000.
       
